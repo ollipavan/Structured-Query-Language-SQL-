@@ -35,3 +35,97 @@ varchar(30);
 Rename table student_info to student_details
 5. Truncate - it is used to remove the values in the table, the table remains same but the values in the table will be removed.
 TRUNCATE TABLE table_name;
+
+Data manipulation language - It is used to change the values in the table
+1. Insert
+-- the below inserting operation is called implicitng inserting because we filled the values for every column.
+insert into student_details values ('Pavan', 390, 'kakinada'),
+('Vinay', 391, 'Chennai'),
+('Venkat', 392, 'Bangalore'),
+('Sai', 393, 'mumbai'),
+('Jai', 394, 'hyderbad');
+
+-- If we want to insert values in a specific column then it is called as explicit inserting
+
+Insert into student_details(Student_name,student_id) values('Peter', 395);
+
+2. Update - it is used to modify any exisitng value in the table 
+/* In the initial time of running update statement sql will throught safety mode error because if we try to update the data
+the old data will be changed in order to remaind us it will through  an error. For this scenario we need to run the below statement first*/
+
+Update student_details set address =  'Vizag' where student_name = 'Peter';
+set SQL_safe_updates = 0;
+insert into student_details(address) values('guntur');
+
+select * from student_details;
+update student_details set student_name = 'Raju', student_id = 397, address = 'Tirupati' where address = 'guntur';
+-- to turn on the safety mode we need to run the below statement
+set SQL_safe_updates = 1;
+3. Delete - to delete the records in the table either single or multiple or all records
+
+delete from student_details where student_id = 394;
+
+Data types
+
+
+Constraints:
+Regular constraints:  
+
+Null: it is used to represent unknown values and it is not equal to zero, also can be used for all data types
+
+
+Not Null: if any value that should be mandatory 
+
+CREATE TABLE products (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+Default: The default value will be taken which was given while creating column
+
+CREATE TABLE settings (
+    id INT PRIMARY KEY,
+    theme VARCHAR(20) DEFAULT 'light'
+);
+Check: it is used like a conditional statement. If we want people above age 18 we need to use check constraint.
+ex; check (age >=18)
+
+CREATE TABLE accounts (
+    id INT PRIMARY KEY,
+    balance DECIMAL(10, 2) CHECK (balance >= 0)
+);
+
+Key constrainst:
+Unique key: Value should be unique and doesn’t allow duplicates but allows single null values because it also considers a null value as unique.
+
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    email VARCHAR(100) UNIQUE
+);
+Pirmary key: Combination on unique and not null. Will not allow null values
+
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+Foreign key: Ensures the value in a column matches a value in another table's primary key.  Maintains referential integrity between related tables.
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+Auto_increment: it will generate sequence of value generated automatically
+
+-- MySQL
+CREATE TABLE customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+-- PostgreSQL
+CREATE TABLE customers (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+
