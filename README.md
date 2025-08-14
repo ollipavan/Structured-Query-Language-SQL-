@@ -148,17 +148,6 @@ on b.account_id = t.account_id -- full join
 select * from bank_info as b left join transactioninfo as t on b.account_id = t.account_id 
 union 
 select * from bank_info as b right join transactioninfo as t on b.account_id = t.account_id; 
-                         JOINS 
-                            | 
-        ----------------------------------------- 
-        |                         |                           | 
-      INNER         OUTER              CROSS 
-       JOIN              JOIN                  JOIN 
-                          | 
-            ----------------------------- 
-            |            |             | 
-         LEFT          RIGHT         FULL 
-         JOIN           JOIN         OUTER JOIN 
  -- cross join - this join is also called as cartesian product because it will provide output as all 
 possible combinations. 
 Syntax: 
