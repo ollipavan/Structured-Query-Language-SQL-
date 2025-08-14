@@ -159,7 +159,9 @@ Syntax:
 select b.account_id, b.fullname, b.branch, b.gender, t.transaction_id, t.transaction_type, t.transaction_amount 
 from bank_info as b join transactioninfo as t 
 on b.account_id = t.account_id;
+
 outer join - both matached and unmatached records will be printed. there are three types in outer joins
+
 -- left join 
 select b.account_id, fullname, b.branch,t.transaction_id, transaction_amount, transaction_time
 from bank_info as b left join transactioninfo as t 
